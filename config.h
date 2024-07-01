@@ -171,22 +171,26 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_r,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } },
 	{ MODKEY,			XK_t,		setlayout,	{.v = &layouts[0]} }, /* tile */
 	{ MODKEY|ShiftMask,		XK_t,		setlayout,	{.v = &layouts[1]} }, /* bstack */
-	{ MODKEY,			XK_y,		setlayout,	{.v = &layouts[2]} }, /* spiral */
-	{ MODKEY|ShiftMask,		XK_y,		setlayout,	{.v = &layouts[3]} }, /* dwindle */
+	{ MODKEY,			XK_z,		setlayout,	{.v = &layouts[2]} }, /* spiral */
+	{ MODKEY|ShiftMask,		XK_z,		setlayout,	{.v = &layouts[3]} }, /* dwindle */
 	{ MODKEY,			XK_u,		setlayout,	{.v = &layouts[4]} }, /* deck */
 	{ MODKEY|ShiftMask,		XK_u,		setlayout,	{.v = &layouts[5]} }, /* monocle */
 	{ MODKEY,			XK_i,		setlayout,	{.v = &layouts[6]} }, /* centeredmaster */
 	{ MODKEY|ShiftMask,		XK_i,		setlayout,	{.v = &layouts[7]} }, /* centeredfloatingmaster */
 	{ MODKEY,			XK_o,		incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		XK_o,		incnmaster,     {.i = -1 } },
-	{ MODKEY,			XK_p,			spawn,		{.v = (const char*[]){ "mpc", "toggle", NULL } } },
-	{ MODKEY|ShiftMask,		XK_p,			spawn,		SHCMD("mpc pause; pauseallmpv") },
-	{ MODKEY,			XK_bracketleft,		spawn,		{.v = (const char*[]){ "mpc", "seek", "-10", NULL } } },
-	{ MODKEY|ShiftMask,		XK_bracketleft,		spawn,		{.v = (const char*[]){ "mpc", "seek", "-60", NULL } } },
-	{ MODKEY,			XK_bracketright,	spawn,		{.v = (const char*[]){ "mpc", "seek", "+10", NULL } } },
-	{ MODKEY|ShiftMask,		XK_bracketright,	spawn,		{.v = (const char*[]){ "mpc", "seek", "+60", NULL } } },
-	{ MODKEY,			XK_backslash,		view,		{0} },
-	/* { MODKEY|ShiftMask,		XK_backslash,		spawn,		SHCMD("") }, */
+	{ MODKEY,			XK_p,		spawn,		{.v = (const char*[]){ "mpc", "toggle", NULL } } },
+	{ MODKEY|ShiftMask,		XK_p,		spawn,		SHCMD("mpc pause; pauseallmpv") },
+	/*{ MODKEY,			XK_comma,	spawn,		{.v = (const char*[]){ "mpc", "seek", "-10", NULL } } },*/
+	/*{ MODKEY,			XK_period,	spawn,		{.v = (const char*[]){ "mpc", "seek", "+10", NULL } } },*/
+	{ MODKEY,			XK_comma,	spawn,		{.v = (const char*[]){ "mpc", "prev", NULL } } },
+	{ MODKEY|ShiftMask,		XK_comma,	spawn,		{.v = (const char*[]){ "mpc", "seek", "-10", NULL } } },
+	/*{ MODKEY|ShiftMask,		XK_comma,	spawn,		{.v = (const char*[]){ "mpc", "seek", "0%", NULL } } },*/
+	{ MODKEY,			XK_period,	spawn,		{.v = (const char*[]){ "mpc", "next", NULL } } },
+	{ MODKEY|ShiftMask,		XK_period,	spawn,		{.v = (const char*[]){ "mpc", "seek", "+10", NULL } } },
+	/*{ MODKEY|ShiftMask,		XK_period,	spawn,		{.v = (const char*[]){ "mpc", "repeat", NULL } } },*/
+	{ MODKEY,			XK_backslash,	view,		{0} },
+	{ MODKEY|ShiftMask,		XK_backslash,	spawn,		SHCMD("") },
 
 	{ MODKEY,			XK_a,		togglegaps,	{0} },
 	{ MODKEY|ShiftMask,		XK_a,		defaultgaps,	{0} },
@@ -209,10 +213,10 @@ static const Key keys[] = {
 	{ MODKEY,			XK_Return,	spawn,		{.v = termcmd } },
 	{ MODKEY|ShiftMask,		XK_Return,	togglescratch,	{.ui = 0} },
 
-	{ MODKEY,			XK_z,		incrgaps,	{.i = +3 } },
-	/* { MODKEY|ShiftMask,		XK_z,		spawn,		SHCMD("") }, */
-	{ MODKEY,			XK_x,		incrgaps,	{.i = -3 } },
-	/* { MODKEY|ShiftMask,		XK_x,		spawn,		SHCMD("") }, */
+	{ MODKEY,			XK_y,		incrgaps,	{.i = +3 } },
+	/* { MODKEY|ShiftMask,		XK_y,		spawn,		SHCMD("") }, */
+	{ MODKEY,			XK_y,		incrgaps,	{.i = -3 } },
+	/* { MODKEY|ShiftMask,		XK_y,		spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_c,		spawn,		SHCMD("dm-clip") },
 	{ MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("dm-clip clear") },
 	/* V is automatically bound above in STACKKEYS */
@@ -223,10 +227,6 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_n,		spawn,		SHCMD("today") },
 	{ MODKEY,			XK_m,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "ncmpcpp", NULL } } },
 	{ MODKEY|ShiftMask,		XK_m,		spawn,		SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") },
-	/*{ MODKEY,			XK_comma,	spawn,		{.v = (const char*[]){ "mpc", "prev", NULL } } },*/
-	/*{ MODKEY|ShiftMask,		XK_comma,	spawn,		{.v = (const char*[]){ "mpc", "seek", "0%", NULL } } },*/
-	/*{ MODKEY,			XK_period,	spawn,		{.v = (const char*[]){ "mpc", "next", NULL } } },*/
-	/*{ MODKEY|ShiftMask,		XK_period,	spawn,		{.v = (const char*[]){ "mpc", "repeat", NULL } } },*/
 	{ MODKEY,			XK_comma,	spawn,		SHCMD("comma") },
 
 	{ MODKEY,			XK_Left,	focusmon,	{.i = -1 } },
@@ -250,13 +250,13 @@ static const Key keys[] = {
 	{ MODKEY,			XK_F8,		spawn,		{.v = (const char*[]){ "mailsync", NULL } } },
 	{ MODKEY,			XK_F9,		spawn,		{.v = (const char*[]){ "mounter", NULL } } },
 	{ MODKEY,			XK_F10,		spawn,		{.v = (const char*[]){ "unmounter", NULL } } },
-	{ MODKEY,			XK_F11,		spawn,		SHCMD("mpv --untimed --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
+	{ MODKEY,			XK_F11,		spawn,		SHCMD("mpv -vf=hflip --untimed --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
 	/*{ MODKEY,			XK_F12,		spawn,		SHCMD("remaps") },*/
 	{ MODKEY,			XK_F12,		spawn,		SHCMD("audiooutput") },
 	{ MODKEY,			XK_space,	zoom,		{0} },
 	{ MODKEY|ShiftMask,		XK_space,	togglefloating,	{0} },
 
-	{ 0,				XK_Print,	spawn,		SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png") },
+	{ 0,				XK_Print,	spawn,		SHCMD("maim pic-full-\"$(date '+%y%m%d-%H%M-%S')-$(xdotool getwindowfocus getwindowname)\".png") },
 	{ ShiftMask,			XK_Print,	spawn,		{.v = (const char*[]){ "maimpick", NULL } } },
 	{ MODKEY,			XK_Print,	spawn,		{.v = (const char*[]){ "dmenurecord", NULL } } },
 	{ MODKEY|ShiftMask,		XK_Print,	spawn,		{.v = (const char*[]){ "dmenurecord", "kill", NULL } } },
